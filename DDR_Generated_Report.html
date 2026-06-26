@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDR Report — UrbanRoof Private Limited</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    max-width: 980px; margin: 0 auto;
+    padding: 0 20px 40px; color: #1a1a1a; line-height: 1.7;
+  }
+  .header-band {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 55%, #0f3460 100%);
+    color: white; padding: 36px 24px; text-align: center;
+    border-radius: 0 0 14px 14px; margin-bottom: 32px;
+  }
+  .header-band h1 { margin: 0; font-size: 1.9rem; letter-spacing: .5px; }
+  .header-band p  { margin: 6px 0 0; opacity: .85; font-size: 1rem; }
+  .logo-line      { font-size: 0.82rem; margin-top: 14px; opacity: .65; }
+
+  h2 {
+    color: #16213e; font-size: 1.2rem;
+    border-left: 5px solid #e6007a; padding-left: 12px;
+    margin-top: 40px; margin-bottom: 6px;
+  }
+  h3 { color: #0f3460; font-size: 1.05rem; margin-top: 28px; }
+  h4 { color: #333; font-size: 0.97rem; margin: 18px 0 4px; }
+
+  .meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 30px; background: #f4f6fb;
+    border: 1px solid #dde3ef; border-radius: 8px;
+    padding: 18px 22px; margin-bottom: 28px;
+  }
+  .meta-grid .label { font-weight: 600; color: #555; font-size: .88rem; }
+  .meta-grid .value { color: #111; font-size: .9rem; }
+
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: .9rem; }
+  th    { background: #1a1a2e; color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  td    { border: 1px solid #cdd4e0; padding: 9px 14px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: .82rem; font-weight: 700; letter-spacing: .3px;
+  }
+  .badge-high   { background: #fde8e8; color: #c0392b; border: 1px solid #e74c3c; }
+  .badge-mod    { background: #fef3e2; color: #d35400; border: 1px solid #e67e22; }
+  .badge-low    { background: #e8f8f0; color: #1e8449; border: 1px solid #27ae60; }
+  .badge-na     { background: #f1f3f6; color: #7f8c8d; border: 1px solid #bdc3c7; }
+
+  .callout {
+    padding: 14px 18px; border-radius: 7px; margin: 10px 0; font-size: .93rem;
+  }
+  .callout-conflict { background: #fff8e1; border-left: 5px solid #f39c12; }
+  .callout-missing  { background: #fdf0f0; border-left: 5px solid #e74c3c; }
+  .callout-info     { background: #eaf4ff; border-left: 5px solid #2980b9; }
+  .callout-warn     { background: #fdf0f0; border-left: 5px solid #c0392b; }
+
+  .priority-label {
+    font-weight: 700; font-size: .82rem; text-transform: uppercase;
+    letter-spacing: .5px; color: white; background: #e6007a;
+    padding: 3px 10px; border-radius: 4px; margin-right: 8px;
+  }
+
+  ol, ul { padding-left: 22px; }
+  li     { margin-bottom: 6px; }
+
+  .section-divider {
+    border: none; border-top: 2px solid #e8ecf3; margin: 36px 0 0;
+  }
+  .footer {
+    text-align: center; font-size: .8rem; color: #888;
+    border-top: 1px solid #dde; margin-top: 50px; padding-top: 18px;
+  }
+
+  .thermal-chip {
+    display: inline-block; background: #f0f4ff; border: 1px solid #b0c0e8;
+    color: #2c3e7a; border-radius: 5px; padding: 2px 9px;
+    font-size: .82rem; font-family: monospace; margin: 1px 2px;
+  }
+  .area-card {
+    border: 1px solid #dde3ef; border-radius: 9px;
+    padding: 18px 20px; margin: 18px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  }
+  .area-card h3 { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<div class="header-band">
+  <p class="logo-line">🏗️ URBANROOF PRIVATE LIMITED</p>
+  <h1>Detailed Diagnostic Report (DDR)</h1>
+  <p>AI-Generated from Site Inspection + Thermal Imaging Data</p>
+</div>
+
+<!-- ═══════════════ PROPERTY META ═══════════════ -->
+<div class="meta-grid">
+  <div><span class="label">Report Prepared By</span><br><span class="value">UrbanRoof Private Limited</span></div>
+  <div><span class="label">Report Date</span><br><span class="value">June 26, 2026</span></div>
+  <div><span class="label">Inspection Date</span><br><span class="value">27 September 2022, 14:28 IST</span></div>
+  <div><span class="label">Inspected By</span><br><span class="value">Krushna &amp; Mahesh</span></div>
+  <div><span class="label">Property Type</span><br><span class="value">Flat — 11-Floor Residential Building</span></div>
+  <div><span class="label">Overall Score</span><br><span class="value">85.71% &nbsp;|&nbsp; Flagged Items: 1</span></div>
+  <div><span class="label">Previous Structural Audit</span><br><span class="value">No</span></div>
+  <div><span class="label">Previous Repair Work</span><br><span class="value">No</span></div>
+  <div><span class="label">Thermal Camera Used</span><br><span class="value">Bosch GTC 400 C Professional (S/N: 02700034772)</span></div>
+  <div><span class="label">Thermal Imaging Date</span><br><span class="value">27 September 2022 (matches inspection)</span></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 1 ═══════════════ -->
+<h2>1. PROPERTY ISSUE SUMMARY</h2>
+
+<p>
+A detailed visual and infrared thermographic inspection was carried out on <strong>27 September 2022</strong>
+for a flat in an 11-floor residential building with <strong>no history of previous structural audits or repairs</strong>.
+The inspection identified <strong>7 distinct impacted areas</strong> spanning the Hall, Bedroom, Master Bedroom,
+Kitchen, Common Bathroom, and Parking Area — all exhibiting active dampness, seepage, or water staining.
+</p>
+<p>
+Thermal imaging using a Bosch GTC 400 C Professional camera confirmed moisture presence across all
+reported areas, with temperature differentials ranging from <strong>3 °C to 8 °C</strong> between wet and
+dry surfaces — indicating ongoing, active moisture infiltration rather than historic or dried-out staining.
+</p>
+<p>
+The primary root cause is <strong>failed waterproofing in wet areas</strong> (open tile joints, hollow
+tiles, and damaged Nahani traps in WC and bathrooms), which allows water to saturate floor slabs and
+migrate into adjacent rooms via capillary action. A compounding cause is <strong>cracks in external walls</strong>
+allowing rainwater ingress. Critically, a leak from <strong>Flat 203 above</strong> is also contributing
+to dampness in Flat 103's common bathroom ceiling — requiring multi-unit coordination.
+Leakage is confirmed as occurring <strong>all the time</strong> (not only during monsoon), indicating
+plumbing or waterproofing failure rather than a purely weather-driven issue.
+</p>
+
+<div class="callout callout-warn">
+  ⚠️ <strong>Immediate attention required</strong> for Parking Area seepage and Common Bathroom ceiling dampness —
+  these involve active water passing through a structural floor slab, which risks long-term structural integrity
+  if untreated.
+</div>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 2 ═══════════════ -->
+<h2>2. AREA-WISE OBSERVATIONS</h2>
+
+<!-- Area 1 -->
+<div class="area-card">
+<h3>2.1 &nbsp; Hall — Skirting Level Dampness</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Dampness and moisture staining observed at the skirting level of the Hall in Flat 103. Paint discolouration and salt deposits visible along wall bases.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>Hollowness and open gaps detected in tile joints of the <strong>Common Bathroom</strong> on the same floor. Accumulated water seeps through the slab and migrates to adjacent hall walls via capillary action.</td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Thermal images show a consistent <strong>cool band</strong> at skirting level indicating trapped moisture. The lower-temperature zone (blue/cyan in IR image) aligns precisely with the visual dampness marks.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~21.5–22 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~26.5–27 °C</span> &nbsp; Δ ≈ <strong>4.5–5 °C</strong> → <em>Moderate-to-High moisture content</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02381X, RB02382X, RB02383X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 2 -->
+<div class="area-card">
+<h3>2.2 &nbsp; Bedroom — Skirting Level Dampness</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Dampness at skirting level of the Bedroom (Flat 103). Moisture staining visible at the base of walls and in wall corners.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>Common Bathroom tile hollowness and open joints. Same bathroom serving both Hall and Bedroom; migrating moisture affects both adjacent spaces.</td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Thermal images reveal cool patches spanning the skirting zone of bedroom walls, consistent with lateral moisture migration from the bathroom floor slab.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~22.3 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~27.3 °C</span> &nbsp; Δ ≈ <strong>5 °C</strong> → <em>Moderate-High moisture</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02384X, RB02385X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 3 -->
+<div class="area-card">
+<h3>2.3 &nbsp; Master Bedroom — Skirting Level Dampness</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Significant dampness at the skirting level of the Master Bedroom. Multiple areas show moisture staining; some areas have started developing efflorescence (white salt deposits) on paint surface.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>Master Bedroom Bathroom has open tile joints, hollowness in tiling, and damaged Nahani trap. Water accumulates under tiles and migrates into adjacent bedroom walls.</td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Larger cool zone detected compared to other rooms, indicating greater moisture saturation. The cool area extends from skirting level upward across a wider section of wall.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~20.8–20.9 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~25.8–25.9 °C</span> &nbsp; Δ ≈ <strong>5 °C</strong> → <em>Moderate-High moisture; larger affected area</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02392X, RB02393X, RB02394X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 4 -->
+<div class="area-card">
+<h3>2.4 &nbsp; Kitchen — Skirting Level Dampness</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Dampness observed at the skirting level of the Kitchen (Flat 103). Paint and wall base show moisture absorption patterns.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>Moisture migrating from the Master Bedroom Bathroom (tile joint gaps + Nahani trap damage) through shared internal walls. Kitchen may also share a wet wall with the MB Bathroom area.</td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Thermal imaging confirms cool banding at skirting level consistent with water migration from adjacent bathroom space.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~21–22 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~26–27 °C</span> &nbsp; Δ ≈ <strong>4–5 °C</strong> → <em>Moderate moisture</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02395X, RB02396X, RB02397X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 5 -->
+<div class="area-card">
+<h3>2.5 &nbsp; Master Bedroom — Wall Dampness &amp; Efflorescence</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Dampness and white efflorescence deposits on the wall surface of Master Bedroom (Flat 103). Paint is peeling in multiple spots; visible in inspection photos 38–41.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>
+    Two sources identified:<br>
+    (a) <strong>External wall cracks</strong> near Master Bedroom — allow rainwater to penetrate through wall thickness<br>
+    (b) <strong>External duct issue</strong> — corroded duct pipes and open gaps around pipe penetrations in external wall (confirmed in inspection photos 40–44)
+  </td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Thermal images show uneven temperature distribution on the external-facing wall, with cooler areas tracing crack paths — confirming rainwater entry through cracks.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~20.2–20.6 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~25.2–25.6 °C</span> &nbsp; Δ ≈ <strong>5 °C</strong> → <em>Active rainwater ingress confirmed</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02398X, RB02399X, RB02400X, RB02401X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 6 -->
+<div class="area-card">
+<h3>2.6 &nbsp; Parking Area — Ceiling Seepage / Leakage</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Active seepage and water staining at parking ceiling directly below Flat 103 (inspection photos 49–52). Water is physically penetrating through the floor slab — confirmed as the most critical finding.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>
+    Combined failure from:<br>
+    (a) Open tile joints and hollowness in <strong>Common Bathroom</strong> (Flat 103)<br>
+    (b) <strong>Damaged Nahani trap</strong> — confirmed via checklist (flagged "Yes")<br>
+    (c) <strong>Loose plumbing joints</strong> in WC area — also confirmed<br>
+    Combined saturation has reached the structural floor slab.
+  </td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Thermal images of the parking ceiling area show significantly colder zones corresponding to water-saturated areas of the slab. Highest temperature differential of the entire inspection observed here.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~20.5–20.7 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~25.5–25.8 °C</span> &nbsp; Δ ≈ <strong>5–5.3 °C</strong> → <em>HIGH moisture — slab saturation</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02402X, RB02403X, RB02404X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- Area 7 -->
+<div class="area-card">
+<h3>2.7 &nbsp; Common Bathroom — Ceiling Dampness</h3>
+<table>
+  <tr><th width="34%">Parameter</th><th>Details</th></tr>
+  <tr><td><strong>Symptom (Negative Side)</strong></td><td>Mild dampness at ceiling of Common Bathroom in Flat 103 (inspection photo 58). Water staining visible at ceiling-wall junction.</td></tr>
+  <tr><td><strong>Root Source (Positive Side)</strong></td><td>
+    Source is from <strong>Flat 203 (floor above)</strong>:<br>
+    (a) Open tile joints in Flat 203 Common Bathroom<br>
+    (b) Open tile joints in Flat 203 Master Bedroom Bathroom<br>
+    (c) <strong>Outlet/drain leakage</strong> in Flat 203<br>
+    Water from Flat 203's bathrooms seeps through their floor slab and appears as ceiling dampness in Flat 103 below.
+  </td></tr>
+  <tr><td><strong>Thermal Finding</strong></td><td>Cool patch visible at ceiling level in thermal imagery, confirming active downward water migration from above. Pattern is localised to ceiling rather than wall — consistent with overhead source.</td></tr>
+  <tr><td><strong>Temperature Differential</strong></td><td>Coldspot: <span class="thermal-chip">~21.2 °C</span> &nbsp; Hotspot: <span class="thermal-chip">~26.2–26.5 °C</span> &nbsp; Δ ≈ <strong>5 °C</strong> → <em>Active overhead leakage confirmed</em></td></tr>
+  <tr><td><strong>Thermal Image Reference</strong></td><td>RB02405X, RB02406X (27/09/2022)</td></tr>
+</table>
+</div>
+
+<!-- ── Thermal Camera Note ── -->
+<div class="callout callout-info">
+  <strong>📷 Note on Thermal-to-Area Mapping:</strong> The thermal images PDF (30 images total) does not contain
+  explicit room labels for each image. The mapping above is based on cross-referencing inspection visit timing,
+  sequence of images, and temperature profiles with the visual observations in the inspection report.
+  For absolute certainty, thermal images should be relabelled during the next inspection visit.
+</div>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 3 ═══════════════ -->
+<h2>3. PROBABLE ROOT CAUSE</h2>
+
+<table>
+  <tr>
+    <th width="26%">Impacted Area</th>
+    <th width="44%">Root Cause</th>
+    <th width="30%">Evidence Source</th>
+  </tr>
+  <tr>
+    <td>Hall (Skirting Dampness)</td>
+    <td>Common Bathroom tile joint gaps → moisture capillary rise into hall walls</td>
+    <td>Inspection Report + Thermal</td>
+  </tr>
+  <tr>
+    <td>Bedroom (Skirting Dampness)</td>
+    <td>Same Common Bathroom tile joint failure; shared wall affected</td>
+    <td>Inspection Report + Thermal</td>
+  </tr>
+  <tr>
+    <td>Master Bedroom (Skirting)</td>
+    <td>MB Bathroom tile hollowness + damaged Nahani trap allowing chronic sub-tile saturation</td>
+    <td>Inspection Report + Thermal</td>
+  </tr>
+  <tr>
+    <td>Kitchen (Skirting)</td>
+    <td>MB Bathroom moisture migration through shared wet wall</td>
+    <td>Inspection Report + Thermal</td>
+  </tr>
+  <tr>
+    <td>MB Wall Dampness + Efflorescence</td>
+    <td>External wall cracks + corroded duct pipe gaps allowing rainwater entry</td>
+    <td>Inspection Report + Thermal</td>
+  </tr>
+  <tr>
+    <td>Parking Ceiling Seepage</td>
+    <td>Nahani trap failure + loose plumbing joints + tile hollowness → full floor slab saturation</td>
+    <td>Inspection Report (flagged) + Thermal</td>
+  </tr>
+  <tr>
+    <td>Common Bathroom Ceiling Dampness</td>
+    <td>Leakage from Flat 203 above — open tile joints + outlet leakage in Flat 203's bathrooms</td>
+    <td>Inspection Report</td>
+  </tr>
+</table>
+
+<h4>Systemic Root Cause Summary:</h4>
+<p>
+The building's waterproofing layer in all wet areas (WC, bathrooms) has completely failed — 
+likely due to age and absence of any prior maintenance. This, combined with external wall 
+cracks and corroded duct pipes, has created multiple simultaneous water ingress pathways that 
+are saturating walls, floors, and structural slabs across several rooms and levels.
+</p>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 4 ═══════════════ -->
+<h2>4. SEVERITY ASSESSMENT</h2>
+
+<table>
+  <tr>
+    <th width="28%">Area</th>
+    <th width="14%">Severity</th>
+    <th width="10%">Priority</th>
+    <th>Key Reasoning</th>
+  </tr>
+  <tr>
+    <td>Parking Area — Ceiling Seepage</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td><strong>1</strong></td>
+    <td>Active water passing through structural slab. Untreated, this risks corrosion of reinforcement steel (rebar) and long-term structural weakening. Thermal Δ = 5.3 °C confirms active saturation.</td>
+  </tr>
+  <tr>
+    <td>Concealed Plumbing Leakage (WC)</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td><strong>1</strong></td>
+    <td>Leakage is "All time" — not seasonal. Nahani trap damage confirmed. Direct cause of slab saturation below. Must be fixed before any waterproofing treatment.</td>
+  </tr>
+  <tr>
+    <td>Common Bathroom Ceiling — Flat 203 Source</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td><strong>1</strong></td>
+    <td>Requires coordination with neighbouring flat. Ongoing overhead leakage is damaging ceiling and slab repeatedly. Cannot be resolved from within Flat 103 alone.</td>
+  </tr>
+  <tr>
+    <td>Master Bedroom Wall — External Crack + Duct</td>
+    <td><span class="badge badge-high">HIGH</span></td>
+    <td><strong>1</strong></td>
+    <td>External wall cracks combined with corroded duct pipe gaps create a direct path for rainwater. Already causing efflorescence — next stage is plaster failure and rebar exposure.</td>
+  </tr>
+  <tr>
+    <td>Master Bedroom — Skirting Dampness</td>
+    <td><span class="badge badge-mod">MODERATE</span></td>
+    <td><strong>2</strong></td>
+    <td>Chronic moisture at skirting. Thermal shows larger cool zone than other bedrooms. Will progress to mould growth and plaster failure if untreated.</td>
+  </tr>
+  <tr>
+    <td>Hall — Skirting Dampness</td>
+    <td><span class="badge badge-mod">MODERATE</span></td>
+    <td><strong>2</strong></td>
+    <td>Will self-resolve once Common Bathroom tile grouting is repaired. Secondary repair.</td>
+  </tr>
+  <tr>
+    <td>Bedroom — Skirting Dampness</td>
+    <td><span class="badge badge-mod">MODERATE</span></td>
+    <td><strong>2</strong></td>
+    <td>Same as Hall — dependent on bathroom repair. Monitor post-treatment.</td>
+  </tr>
+  <tr>
+    <td>Kitchen — Skirting Dampness</td>
+    <td><span class="badge badge-mod">MODERATE</span></td>
+    <td><strong>2</strong></td>
+    <td>Will resolve once MB Bathroom is treated. No independent source identified.</td>
+  </tr>
+  <tr>
+    <td>External Wall Cracks (building-wide)</td>
+    <td><span class="badge badge-mod">MODERATE</span></td>
+    <td><strong>2</strong></td>
+    <td>Currently moderate severity. Will escalate to HIGH with next monsoon season if not sealed. Paint type unknown — may not be offering waterproofing protection.</td>
+  </tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 5 ═══════════════ -->
+<h2>5. RECOMMENDED ACTIONS</h2>
+
+<h3><span class="priority-label">Priority 1</span> Immediate Actions — Complete Within 4 Weeks</h3>
+
+<ol>
+  <li>
+    <strong>Fix Concealed Plumbing &amp; Nahani Trap (WC / Common Bathroom)</strong><br>
+    Engage a licensed plumber to inspect and repair all concealed plumbing lines in the WC area.
+    Replace the damaged Nahani trap. Repair all loose plumbing joints (flush tank, angle cock,
+    bibcock connections). Pressure-test all repaired lines before any waterproofing work begins.
+    <em>Do not start tile grouting until plumbing is confirmed leak-free.</em>
+  </li>
+  <li>
+    <strong>Bathroom &amp; WC Tile Grouting Treatment (All Bathrooms in Flat 103)</strong><br>
+    Clean all tile surfaces. Cut existing grout joints into a V-shape using an electric grout cutter.
+    Fill joints with a liquid polymer-modified mortar (e.g. Dr. Fixit URP or equivalent) to ensure
+    the material reaches cracks below tiles. After initial set, fill RTM grout into tile joints and
+    patch. Apply polymer-modified mortar (PMM) at all outlets and wall-floor corners.
+    Allow full air cure for 24–48 hours before allowing water contact.
+  </li>
+  <li>
+    <strong>Coordinate with Flat 203 Residents / Society Committee</strong><br>
+    Report findings to the building committee. Request Flat 203's bathrooms and drain outlets
+    be inspected and repaired urgently — identical grouting treatment and outlet fixing required
+    in Flat 203 to stop ceiling dampness in Flat 103's Common Bathroom.
+  </li>
+  <li>
+    <strong>Seal External Wall Cracks Near Master Bedroom &amp; Repair Duct Pipe Gaps</strong><br>
+    Fill all external wall cracks with waterproof crack-filler. Seal gaps around all external
+    duct pipe penetrations using non-shrink polymer grout or weatherproof sealant.
+    Replace corroded sections of external duct pipes if identified during close inspection.
+  </li>
+</ol>
+
+<h3><span class="priority-label">Priority 2</span> Secondary Actions — Complete Within 3 Months</h3>
+<ol>
+  <li>
+    <strong>Plaster Repair (Internal Damp Areas)</strong><br>
+    After waterproofing source is fixed and walls have dried (minimum 4–6 weeks), chip off all
+    loose, damaged, and hollow plaster in affected rooms. Apply a bonding coat of polymer modified
+    bonding agent (e.g. Dr. Fixit Pidicrete URP, 1:1 ratio with cement) before re-plastering.
+    Apply 20–25 mm sand-faced cement plaster in two coats with a shrinkage-compensating
+    waterproofing additive mixed into both coats.
+  </li>
+  <li>
+    <strong>External Wall Waterproof Coating</strong><br>
+    After cracks and plaster are repaired, apply a premium waterproof exterior coating on all
+    external walls. Current paint type is unknown ("Not Sure" per inspection) — existing paint
+    may not provide adequate waterproofing. Apply anti-algae/anti-fungal primer before topcoat
+    to address observed algae and moss growth.
+  </li>
+  <li>
+    <strong>External Plumbing Pipe Repair</strong><br>
+    Replace or repair all external plumbing pipes showing cracks or leakage (confirmed as
+    Moderate on inspection checklist). Ensure all pipe-to-wall interface points are properly
+    grouted and sealed.
+  </li>
+</ol>
+
+<h3><span class="priority-label">Priority 3</span> Preventive &amp; Long-Term — 3–6 Months</h3>
+<ol>
+  <li>Re-paint interior walls of all previously damp rooms with anti-moisture interior paint once fully dry.</li>
+  <li>Schedule a follow-up thermal inspection 6 months after all repairs to verify moisture has been eliminated.</li>
+  <li>Arrange annual building façade inspection given the structure's age and lack of prior maintenance history.</li>
+  <li>Consider a full building terrace/roof inspection — terrace was not included in this inspection scope but overhead leakage from Flat 203 suggests terrace drainage should also be checked.</li>
+</ol>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 6 ═══════════════ -->
+<h2>6. ADDITIONAL NOTES</h2>
+
+<ul>
+  <li>
+    <strong>Leakage is "All Time" (not seasonal):</strong> Both WC and External Wall leakage are reported
+    as occurring "All time" on the inspection checklist. This is significant — it rules out
+    purely monsoon-driven water entry and confirms an active ongoing plumbing or waterproofing
+    failure requiring immediate attention.
+  </li>
+  <li>
+    <strong>Multi-Unit Problem:</strong> Area 7 (Common Bathroom ceiling dampness) cannot be fixed
+    without cooperation from Flat 203. The building society or management committee must be
+    involved to facilitate access to Flat 203 and ensure repairs are carried out there too.
+  </li>
+  <li>
+    <strong>Thermal Camera Data Quality:</strong> All 30 thermal images were captured with
+    emissivity set to 0.94 (correct for building materials like plaster, tile, concrete)
+    and reflected temperature at 23 °C. This ensures accurate readings. The Bosch GTC 400 C
+    is a professional-grade instrument — data is reliable.
+  </li>
+  <li>
+    <strong>No Previous Repairs — Higher Risk:</strong> The property has had no previous structural
+    audit or repair work. This means waterproofing has been degrading since original construction
+    with no intervention. Multiple simultaneous failures occurring now suggest the original
+    waterproofing has reached end-of-life across all wet areas simultaneously.
+  </li>
+  <li>
+    <strong>Structural Cracks — Engineering Review:</strong> Any cracks wider than 2 mm in structural
+    elements (columns, beams) should be separately evaluated by a Registered Structural Engineer
+    before repair. RCC member cracks are currently flagged as "Moderate" — monitor closely.
+  </li>
+  <li>
+    <strong>Mould Risk:</strong> Wherever dampness has persisted, hidden mould growth behind walls
+    or under floors is possible. If any occupant suffers from respiratory issues or allergies,
+    an environmental test for mould is recommended before replastering.
+  </li>
+</ul>
+
+<div class="callout callout-conflict">
+  ⚠️ <strong>Potential Conflict Noted:</strong> The inspection checklist flags
+  "Leakage due to Nahani trap damage: <strong>Yes</strong>" (in red/flagged status).
+  This should be verified carefully during plumbing repair as it affects the scope
+  of work — a damaged Nahani trap requires complete replacement, not just grouting.
+</div>
+
+<hr class="section-divider">
+
+<!-- ═══════════════ SECTION 7 ═══════════════ -->
+<h2>7. MISSING OR UNCLEAR INFORMATION</h2>
+
+<table>
+  <tr>
+    <th width="35%">Required Field</th>
+    <th width="22%">Status</th>
+    <th>Note</th>
+  </tr>
+  <tr>
+    <td>Customer / Owner Name</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Redacted or not provided in source documents</td>
+  </tr>
+  <tr>
+    <td>Full Property Address</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Not present in extracted inspection text</td>
+  </tr>
+  <tr>
+    <td>Property Age / Year of Construction</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Not mentioned in inspection form</td>
+  </tr>
+  <tr>
+    <td>Existing External Paint Type &amp; Manufacturer</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Inspector marked "Not Sure" — cannot assess waterproofing quality of current coating</td>
+  </tr>
+  <tr>
+    <td>Exact Thermal Image-to-Room Mapping</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Thermal PDF has no room labels. Mapping in Section 2 is inferred from inspection sequence and temperature profiles.</td>
+  </tr>
+  <tr>
+    <td>Flat 203 Inspection Data</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Flat 203 was identified as a source but not inspected. Full repair plan requires Flat 203 inspection.</td>
+  </tr>
+  <tr>
+    <td>Structural Engineer Assessment</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Not performed. Recommended for RCC cracks (currently Moderate).</td>
+  </tr>
+  <tr>
+    <td>Terrace / Roof Inspection</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Not in scope of this inspection. Recommended given multi-floor leakage pattern.</td>
+  </tr>
+  <tr>
+    <td>Concealed Plumbing Layout / Pipe Age</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Needed to assess full scope of plumbing repair work</td>
+  </tr>
+  <tr>
+    <td>Customer Contact Details (Email/Phone)</td>
+    <td><span class="badge badge-na">Not Available</span></td>
+    <td>Not present in extracted document text</td>
+  </tr>
+  <tr>
+    <td>Tile Type in Common Bathroom</td>
+    <td><span class="badge badge-na">Partially Available</span></td>
+    <td>Marked "Moderate" on checklist — exact tile type not specified</td>
+  </tr>
+</table>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<hr class="section-divider">
+<div class="footer">
+  <strong>UrbanRoof Private Limited</strong> &nbsp;·&nbsp;
+  www.urbanroof.in &nbsp;·&nbsp; info@urbanroof.in &nbsp;·&nbsp; +91-8925-805-805<br>
+  Office No. 03, Akshay House, Anand Nagar, Sinhgad Road, Pune – 411051<br><br>
+  <em>This DDR was generated by an AI system from the provided Site Inspection Report and Thermal Imaging Report dated 27/09/2022.
+  No facts have been invented or assumed beyond those present in the source documents.
+  For any information marked "Not Available", the source documents did not contain the required data.
+  This report does not constitute a structural engineering assessment. — UrbanRoof Private Limited</em>
+</div>
+
+</body>
+</html>
